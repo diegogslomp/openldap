@@ -1,0 +1,19 @@
+version: "3.1"
+
+services:
+  ldap:
+    image: openldap:almalinux
+    restart: unless-stopped
+    network_mode: host
+    build:
+      context: .
+      dockerfile: dockerfiles/almalinux
+      args:
+        VERSION: "${OPENLDAP_VERSION:-2.5.13}"
+    container_name: ldap
+    hostname: ldap
+    volumes:
+      - usr-local:/usr/local
+
+volumes:
+  usr-local:
