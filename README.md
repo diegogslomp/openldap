@@ -13,7 +13,7 @@ docker run -d --network=host \
   --name ldap diegogslomp/openldap
 ```
 
-1. Or clone, build and run:
+2. Or clone, build and run:
 ```
 git clone --single-branch https://github.com/diegogslomp/openldap
 cd openldap
