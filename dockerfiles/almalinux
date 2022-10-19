@@ -3,7 +3,7 @@ FROM almalinux:9
 RUN yum install gcc man diffutils -y && \
   yum clean all -y
 
-ARG VERSION
+ARG VERSION=2.5.13
 
 WORKDIR /usr/local/src
 RUN curl -O "https://www.openldap.org/software/download/OpenLDAP/openldap-release/openldap-${VERSION}.tgz" && \
