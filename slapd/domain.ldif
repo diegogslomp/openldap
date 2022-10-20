@@ -1,0 +1,9 @@
+dn: dc=my-domain,dc=com
+objectclass: dcObject
+objectclass: organization
+o: My Domain
+dc: my-domain
+
+dn: cn=Manager,dc=my-domain,dc=com
+objectclass: organizationalRole
+cn: Manager

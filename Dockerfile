@@ -25,13 +25,15 @@ RUN mkdir -p /usr/local/etc/slapd.d && \
   mv slapd.ldif slapd.ldif.ORIG && \
   mv slapd.conf slapd.conf.ORIG
 
+COPY slapd/slapd.conf slapd.conf
+COPY slapd/slapd.ldif slapd.ldif
+COPY slapd/domain.ldif domain.ldif
+
 # Import configuration database
-COPY slapd.conf slapd.conf
-COPY slapd.ldif slapd.ldif
 RUN /usr/local/sbin/slapadd -n 0 \
   -F /usr/local/etc/slapd.d \
   -l /usr/local/etc/openldap/slapd.ldif
 
-CMD /usr/local/libexec/slapd -d 0 -F /usr/local/etc/slapd.d
+CMD /usr/local/libexec/slapd -d 1 -F /usr/local/etc/slapd.d
 VOLUME /usr/local
 EXPOSE 389 636
