@@ -6,12 +6,12 @@
 OpenLDAP Server Image
 
 1. Default config run:
-```
-docker run -d --network=host \
-  --restart=unless-stopped \
-  -v ldap-local:/usr/local \
-  --name ldap diegogslomp/openldap
-```
+   ```
+   docker run -d --network=host \
+     --restart=unless-stopped \
+     -v ldap-local:/usr/local \
+     --name ldap diegogslomp/openldap
+   ```
 
 
 2. Tests:
@@ -32,12 +32,12 @@ docker run -d --network=host \
    ```
   
 3. Or clone, build and run:
-```
-git clone --single-branch https://github.com/diegogslomp/openldap
-cd openldap
-# Edit my-domain inside slapd folder files
-docker compose build
-docker compose up -d
-```
+   ```
+   git clone --single-branch https://github.com/diegogslomp/openldap
+   cd openldap
+   # Edit my-domain inside slapd folder files
+   docker compose build
+   docker compose up -d
+   ```
 
 Official site: https://www.openldap.org/doc/admin26/quickstart.html
