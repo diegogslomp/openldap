@@ -15,4 +15,4 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . --file dockerfiles/almalinux --tag openldap-almalinux
+      run: docker build . --file Dockerfile --tag openldap-almalinux

@@ -7,7 +7,7 @@ services:
     network_mode: host
     build:
       context: .
-      dockerfile: dockerfiles/almalinux
+      dockerfile: Dockerfile
       args:
         VERSION: "${OPENLDAP_VERSION:-2.5.13}"
     container_name: ldap

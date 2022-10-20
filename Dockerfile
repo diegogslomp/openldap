@@ -20,10 +20,13 @@ RUN ./configure && \
   rm -rf /usr/local/src/openldap
 
 WORKDIR /usr/local/etc/openldap
-RUN mkdir -p /usr/local/etc/slapd.d /usr/local/var/openldap-data && \
-  mv slapd.ldif slapd.ldif.ORIG
+RUN mkdir -p /usr/local/etc/slapd.d && \
+  mkdir -p /usr/local/var/openldap-data && \
+  mv slapd.ldif slapd.ldif.ORIG && \
+  mv slapd.conf slapd.conf.ORIG
 
 # Import configuration database
+COPY slapd.conf slapd.conf
 COPY slapd.ldif slapd.ldif
 RUN /usr/local/sbin/slapadd -n 0 \
   -F /usr/local/etc/slapd.d \
