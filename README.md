@@ -28,12 +28,12 @@ OpenLDAP Server Image
 
 3. Tests:
 
-   2.1 Show namingContexts:
+   3.1 Show namingContexts:
    ```
    docker exec ldap ldapsearch -xLLL -b '' -s base '(objectclass=*)' namingContexts
    ```
 
-   2.2 Search all domain entries:
+   3.2 Search all domain entries:
    ```
    docker exec ldap ldapsearch -xLLL -b "${DN}" '(objectclass=*)'
    ```
