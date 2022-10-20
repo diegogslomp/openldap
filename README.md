@@ -17,7 +17,7 @@ docker run -d --network=host \
 ```
 git clone --single-branch https://github.com/diegogslomp/openldap
 cd openldap
-# Edit my-domain inside ./slapd files
+# Edit my-domain inside slapd folder files
 docker compose build
 docker compose up -d
 ```
@@ -30,7 +30,7 @@ docker exec ldap \
 
 # Add my-domain organization
 docker exec ldap \
-  ldapadd -x -D "cn=manager,dc=my-domain,dc=com" -w secret -f domain.ldif || true
+  ldapadd -x -D "cn=manager,dc=my-domain,dc=com" -w secret -f domain.ldif
 
 # Search all domain entries
 docker exec ldap \
