@@ -5,12 +5,15 @@
 
 OpenLDAP Server Image
 
-1. Run image:
+1. Domain info:
    ```
-   export DN="dc=my-domain,dc=com"
-   export PASSWD="secret"
+   export DN="dc=my-domain,dc=com" \
+   export PASSWD="secret" \
    export NAME="My Domain"
-
+   ```
+   
+2. Run image:
+   ```
    docker run -d --network=host \
      --restart=unless-stopped \
      -e DN="${DN}" \
@@ -20,18 +23,18 @@ OpenLDAP Server Image
      --name ldap diegogslomp/openldap
    ```
 
-2. Add domain organization:
+3. Add domain organization:
    ```
    docker exec ldap ldapadd -x -D "cn=manager,${DN}" -w "${PASSWD}" -f domain.ldif
    ```
 
-3. Tests:
+4. Tests:
    ```
    docker exec ldap ldapsearch -xLLL -b '' -s base '(objectclass=*)' namingContexts
    docker exec ldap ldapsearch -xLLL -b "${DN}" '(objectclass=*)'
    ```
 
-4. Or clone, build and run:
+5. Or clone, build and run:
    ```
    git clone --single-branch https://github.com/diegogslomp/openldap
    cd openldap
