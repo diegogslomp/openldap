@@ -4,13 +4,14 @@ set -euo pipefail
 DN="${DN:-dc=my-domain,dc=com}"
 DOMAIN=$(echo "${DN}" | awk -F= '{print $2}' | awk -F, '{print $1}')
 NAME="${NAME:-My Domain}"
+PASSWD="${PASSWD:-secret}"
 
 for file in domain.ldif slapd.conf slapd.ldif; do
   sed -i "s/dc=my-domain,dc=com/${DN}/g" "$file"
   sed -i "s/my-domain/${DOMAIN}/g" "$file"
 done
 
-sed -i "s/secret/${PASSWD:-secret}/g" slapd.{ldif,conf}
+sed -i "s/secret/${PASSWD}/g" slapd.{ldif,conf}
 sed -i "s/My Domain/${NAME}/g" domain.ldif
 
 # Import configuration db

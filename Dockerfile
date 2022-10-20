@@ -26,7 +26,7 @@ RUN mkdir -p /usr/local/etc/slapd.d && \
 COPY domain.ldif domain.ldif
 COPY sbin /usr/local/sbin
 
-CMD set-domain-on-configfiles && start-slapd
+CMD update-etc-files && start-slapd
 
 VOLUME /usr/local
 EXPOSE 389 636
