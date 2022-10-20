@@ -10,11 +10,14 @@ _info() {
   printf "${BLUE}# $(hostname):${YELLOW} ${MESSAGE}${NC}\n"
 }
 
+export DN="dc=dgs,dc=net"
+export PASSWD="othersupers3cretpass"
+
+_info "Add domain organization"
+docker exec ldap ldapadd -x -D "cn=manager,${DN}" -w "${PASSWD}" -f domain.ldif || true
+
 _info Show namingContexts
 ldapsearch -xLLL -b '' -s base '(objectclass=*)' namingContexts
 
-_info Add my-domain organization
-ldapadd -x -D "cn=manager,dc=my-domain,dc=com" -w secret -f ./slapd/domain.ldif || true
-
 _info Search all domain entries
-ldapsearch -xLLL -b "dc=my-domain,dc=com" '(objectclass=*)'
+ldapsearch -xLLL -b "${DN}" '(objectclass=*)'
