@@ -15,15 +15,14 @@ OpenLDAP Server Image
      --restart=unless-stopped \
      -e DN="${DN}" \
      -e PASSWD="${PASSWD}" \
-     -e NAME="My Domain" \
+     -e NAME="${NAME}" \
      -v ldap-local:/usr/local \
      --name ldap diegogslomp/openldap
    ```
 
 2. Add organization:
    ```
-   docker exec ldap \
-      ldapadd -x -D "cn=manager,${DN}" -w "${PASSWD}" -f domain.ldif
+   docker exec ldap ldapadd -x -D "cn=manager,${DN}" -w "${PASSWD}" -f domain.ldif
    ```
 
 3. Tests:
