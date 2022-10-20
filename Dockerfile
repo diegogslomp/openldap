@@ -21,13 +21,12 @@ RUN ./configure && \
 
 WORKDIR /usr/local/etc/openldap
 RUN mkdir -p /usr/local/etc/slapd.d && \
-  mkdir -p /usr/local/var/openldap-data && \
-  mv slapd.ldif slapd.ldif.ORIG && \
-  mv slapd.conf slapd.conf.ORIG
+  mkdir -p /usr/local/var/openldap-data
 
-COPY slapd/* .
+COPY domain.ldif domain.ldif
 COPY sbin /usr/local/sbin
 
 CMD set-domain-on-configfiles && start-slapd
+
 VOLUME /usr/local
 EXPOSE 389 636
