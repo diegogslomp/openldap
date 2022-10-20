@@ -20,20 +20,14 @@ OpenLDAP Server Image
      --name ldap diegogslomp/openldap
    ```
 
-2. Add organization:
+2. Add domain organization:
    ```
    docker exec ldap ldapadd -x -D "cn=manager,${DN}" -w "${PASSWD}" -f domain.ldif
    ```
 
 3. Tests:
-
-   3.1 Show namingContexts:
    ```
    docker exec ldap ldapsearch -xLLL -b '' -s base '(objectclass=*)' namingContexts
-   ```
-
-   3.2 Search all domain entries:
-   ```
    docker exec ldap ldapsearch -xLLL -b "${DN}" '(objectclass=*)'
    ```
 
