@@ -13,28 +13,31 @@ docker run -d --network=host \
   --name ldap diegogslomp/openldap
 ```
 
-2. Or clone, build and run:
+
+2. Tests:
+
+   2.1 Show namingContexts:
+   ```
+   docker exec ldap ldapsearch -xLLL -b '' -s base '(objectclass=*)' namingContexts
+   ```
+
+   2.2 Add my-domain organization:
+   ```
+   docker exec ldap ldapadd -x -D "cn=manager,dc=my-domain,dc=com" -w secret -f domain.ldif
+   ```
+
+   2.3 Search all domain entries:
+   ```
+   docker exec ldap ldapsearch -xLLL -b "dc=my-domain,dc=com" '(objectclass=*)'
+   ```
+  
+3. Or clone, build and run:
 ```
 git clone --single-branch https://github.com/diegogslomp/openldap
 cd openldap
 # Edit my-domain inside slapd folder files
 docker compose build
 docker compose up -d
-```
-
-3. Tests:
-```
-# Show namingContexts
-docker exec ldap \
-  ldapsearch -xLLL -b '' -s base '(objectclass=*)' namingContexts
-
-# Add my-domain organization
-docker exec ldap \
-  ldapadd -x -D "cn=manager,dc=my-domain,dc=com" -w secret -f domain.ldif
-
-# Search all domain entries
-docker exec ldap \
-  ldapsearch -xLLL -b "dc=my-domain,dc=com" '(objectclass=*)'
 ```
 
 Official site: https://www.openldap.org/doc/admin26/quickstart.html
