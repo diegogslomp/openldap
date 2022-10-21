@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 set -euo pipefail
+set -x
+
+if [[ -e "/usr/local/etc/slapd.d/cn=config" ]]; then
+  exit
+fi
 
 DN="${DN:-dc=my-domain,dc=com}"
 DOMAIN=$(echo "${DN}" | awk -F= '{print $2}' | awk -F, '{print $1}')
