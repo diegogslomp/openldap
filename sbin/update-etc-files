@@ -21,5 +21,5 @@ sed -i "s/My Domain/${NAME}/g" domain.ldif
 
 # Import configuration db
 /usr/local/sbin/slapadd -n 0 \
-  -F /usr/local/etc/slapd.d \
+  -F /usr/local/etc/openldap/slapd.d \
   -l /usr/local/etc/openldap/slapd.ldif

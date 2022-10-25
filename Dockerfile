@@ -20,7 +20,7 @@ RUN ./configure && \
   rm -rf /usr/local/src/openldap
 
 WORKDIR /usr/local/etc/openldap
-RUN mkdir -p /usr/local/etc/slapd.d && \
+RUN mkdir -p slapd.d && \
   mkdir -p /usr/local/var/openldap-data
 
 COPY domain.ldif domain.ldif

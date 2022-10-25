@@ -12,7 +12,7 @@ services:
         VERSION: "${OPENLDAP_VERSION:-2.5.13}"
     environment:
       DN: "dc=dgs,dc=net"
-      PASSWD: "othersupers3cretpass"
+      PASSWD: "secret"
       NAME: "DGS Net"
     container_name: ldap
     hostname: ldap

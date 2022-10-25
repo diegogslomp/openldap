@@ -11,7 +11,7 @@ _info() {
 }
 
 export DN="dc=dgs,dc=net"
-export PASSWD="othersupers3cretpass"
+export PASSWD="secret"
 
 _info "Add domain organization"
 docker exec ldap ldapadd -x -D "cn=manager,${DN}" -w "${PASSWD}" -f domain.ldif || true
